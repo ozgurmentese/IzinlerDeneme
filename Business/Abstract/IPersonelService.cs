@@ -11,6 +11,6 @@ namespace Business.Abstract
         IResult Add(Personel personel);
         IDataResult<List<Personel>> GetAll();
         IDataResult<Personel> Get(int id);
-        IResult IzinVer(Personel personel,Zamanlar zamanlar);
+       
     }
 }

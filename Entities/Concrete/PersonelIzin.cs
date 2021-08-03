@@ -9,9 +9,8 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public int PersonelId { get; set; }
-        public int IzinRaporTuru { get; set; }
-        public int IzinRaporTipi { get; set; }
-        public DateTime IstekTarihi { get; set; }
-        public int BelgeNo { get; set; }
+        public int IzinGunSayisi { get; set; }
+        public DateTime Gidis { get; set; }
+        public DateTime Donus { get; set; }
     }
 }

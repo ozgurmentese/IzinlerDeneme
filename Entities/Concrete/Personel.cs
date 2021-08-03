@@ -11,6 +11,7 @@ namespace Entities.Concrete
         public string Ad { get; set; }
         public string SoyAd { get; set; }
         public DateTime GirisTarihi { get; set; }
-        public int IzinGunSayisi { get; set; }
+        
+       
     }
 }

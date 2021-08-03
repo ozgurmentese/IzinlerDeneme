@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonellerController : ControllerBase
+    public class PersonelIzinleriController : ControllerBase
     {
-        IPersonelService _personelService;
+        IPersonelIzinService _personelIzinService;
 
-        public PersonellerController(IPersonelService personelService)
+        public PersonelIzinleriController(IPersonelIzinService personelIzinService)
         {
-            _personelService = personelService;
+            _personelIzinService = personelIzinService;
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Personel personel)
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            var result = _personelService.Add(personel);
+            var result = _personelIzinService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -31,10 +31,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        [HttpPost("add")]
+        public IActionResult Add(PersonelIzin personelIzin)
         {
-            var result = _personelService.GetAll();
+            var result = _personelIzinService.Add(personelIzin);
             if (result.Success)
             {
                 return Ok(result);

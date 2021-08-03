@@ -15,7 +15,5 @@ namespace DataAccess.Concrete.EntityFramework
 
         public DbSet<Personel> Personeller { get; set; }
         public DbSet<PersonelIzin> PersonelIzinleri { get; set; }
-        public DbSet<PersonelIzinListe> PersonelIzinListesi { get; set; }
-
     }
 }

@@ -19,10 +19,6 @@ namespace Business.Concrete
 
         public IResult Add(Personel personel)
         {
-            var izinGunSayisi = DateTime.Now.Year - personel.GirisTarihi.Year;
-            personel.IzinGunSayisi = Hesapla(izinGunSayisi);
-
-
             _personelDal.Add(personel);
             return new SuccessResult("Eklendi");
         }
@@ -52,19 +48,6 @@ namespace Business.Concrete
         public IDataResult<List<Personel>> GetAll()
         {
             return new SuccessDataResult<List<Personel>>(_personelDal.GetAll(), "Listelendi");
-        }
-
-        public IResult IzinVer(Personel personel, Zamanlar zamanlar)
-        {
-            var personelDb = _personelDal.Get(p => p.Id == personel.Id);
-            var tarih = zamanlar.Gidis.Day - zamanlar.Donus.Day;
-            if (tarih < personelDb.IzinGunSayisi)
-            {
-                return new ErrorResult("Belirtilen gün sayısı izin  gününden fazladır");
-            }
-            personelDb.IzinGunSayisi -= tarih;
-            _personelDal.Update(personelDb);
-            return new SuccessResult("İzin işlendi");
         }
     }
 }
