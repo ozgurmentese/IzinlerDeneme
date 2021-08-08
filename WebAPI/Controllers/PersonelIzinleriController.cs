@@ -41,5 +41,41 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPost("update")]
+        public IActionResult Update(PersonelIzin personelIzin)
+        {
+            var result = _personelIzinService.Update(personelIzin);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getpersoneller")]
+        public IActionResult GetPersoneller()
+        {
+            var result = _personelIzinService.GetPersonelller();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _personelIzinService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+
+
     }
 }

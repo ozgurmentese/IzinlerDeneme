@@ -11,15 +11,24 @@ namespace Business.Concrete
     public class PersonelManager : IPersonelService
     {
         IPersonelDal _personelDal;
+        IPersonelIzinDal _personelIzinDal;
 
-        public PersonelManager(IPersonelDal personelDal)
+        public PersonelManager(IPersonelDal personelDal, IPersonelIzinDal personelIzinDal)
         {
             _personelDal = personelDal;
+            _personelIzinDal = personelIzinDal;
         }
 
         public IResult Add(Personel personel)
         {
             _personelDal.Add(personel);
+            PersonelIzin personelIzin = new PersonelIzin
+            {
+                PersonelId = personel.Id,
+                IzinGunSayisi = Hesapla(DateTime.Now.Year - personel.GirisTarihi.Year)
+            };
+
+            _personelIzinDal.Add(personelIzin);
             return new SuccessResult("Eklendi");
         }
 

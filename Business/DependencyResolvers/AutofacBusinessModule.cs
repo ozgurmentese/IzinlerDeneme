@@ -14,10 +14,6 @@ namespace Business.DependencyResolvers
 {
     public class AutofacBusinessModule : Module
     {
-        /// <summary>
-        /// IoC Conteiner'ların devreye girmesi için Program.cs de gerekli kodlar yazıldı.
-        /// </summary>
-        /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
 

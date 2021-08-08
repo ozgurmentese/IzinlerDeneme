@@ -6,9 +6,10 @@ namespace Entities.Dtos
 {
     public class PersonelDto
     {
-        public int PersonelId { get; set; }
-        public string Ad { get; set; }
-        public string SoyAd { get; set; }
-        public int IzinSayisi { get; set; }
+        public int Id { get; set; }
+        public string AdSoyAd { get; set; }
+        public int IzinGunSayisi { get; set; }
+        public DateTime Gidis { get; set; }
+        public DateTime Donus { get; set; }
     }
 }
