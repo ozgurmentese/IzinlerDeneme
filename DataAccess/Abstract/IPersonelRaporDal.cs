@@ -4,11 +4,12 @@ using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IPersonelIzinDal:IEntityRepository<PersonelIzin>
+    public interface IPersonelRaporDal:IEntityRepository<PersonelRapor>
     {
-        List<PersonelIzinDto> GetPersoneller(Expression<Func<PersonelIzinDto, bool>> filter = null);
+        List<PersonelRaporDto> GetPersoneller(Expression<Func<PersonelRaporDto, bool>> filter = null);
     }
 }

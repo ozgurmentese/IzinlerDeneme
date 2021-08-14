@@ -12,7 +12,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfPersonelIzinDal : EfEntityRepositoryBase<PersonelIzin, IzinlerDenemeContext>, IPersonelIzinDal
     {
-        public List<PersonelDto> GetPersoneller(Expression<Func<PersonelDto, bool>> filter = null)
+        public List<PersonelIzinDto> GetPersoneller(Expression<Func<PersonelIzinDto, bool>> filter = null)
         {
 
             using (IzinlerDenemeContext context = new IzinlerDenemeContext())
@@ -20,11 +20,13 @@ namespace DataAccess.Concrete.EntityFramework
                 var result = from personeller in context.Personeller
                              join personelIzinleri in context.PersonelIzinleri
                              on personeller.Id equals personelIzinleri.PersonelId
-                             select new PersonelDto
+                             select new PersonelIzinDto
                              {
-                                 Id = personelIzinleri.Id,
+                                 PersonelId = personelIzinleri.Id,
                                  AdSoyAd = personeller.Ad + " " + personeller.SoyAd,
-                                 IzinGunSayisi = personelIzinleri.IzinGunSayisi,
+                                 HakEdilenIzinGunSayisi = personelIzinleri.HakEdilenIzinGunSayisi,
+                                 KalanIzinGunSayisi=personelIzinleri.KalanIzinGunSayisi,
+                                 TalepEdilenIzinGunSayisi=personelIzinleri.TalepEdilenIzinGunSayisi,
                                  Gidis = personelIzinleri.Gidis,
                                  Donus = personelIzinleri.Donus
                              };

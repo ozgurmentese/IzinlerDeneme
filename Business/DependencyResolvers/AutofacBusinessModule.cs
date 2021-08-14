@@ -23,6 +23,9 @@ namespace Business.DependencyResolvers
             builder.RegisterType<PersonelIzinManager>().As<IPersonelIzinService>().SingleInstance();
             builder.RegisterType<EfPersonelIzinDal>().As<IPersonelIzinDal>().SingleInstance();
             
+            builder.RegisterType<PersonelRaporManager>().As<IPersonelRaporService>().SingleInstance();
+            builder.RegisterType<EfPersonelRaporDal>().As<IPersonelRaporDal>().SingleInstance();
+            
 
          
 

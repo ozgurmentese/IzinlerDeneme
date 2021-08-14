@@ -11,6 +11,7 @@ namespace Business.Abstract
         IResult Update(PersonelIzin personelIzin);
         IDataResult<List<PersonelIzin>> GetAll();
         IDataResult<PersonelIzin> Get(int id);
-        IDataResult<List<PersonelDto>> GetPersonelller();
+        IDataResult<List<PersonelIzinDto>> GetPersonelller();
+        IResult NewPersonelIzinAdd(Personel personel);
     }
 }

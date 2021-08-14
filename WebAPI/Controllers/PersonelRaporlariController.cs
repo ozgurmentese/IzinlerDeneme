@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonelIzinleriController : ControllerBase
+    public class PersonelRaporlariController : ControllerBase
     {
-        IPersonelIzinService _personelIzinService;
+        readonly IPersonelRaporService _personelRaporService;
 
-        public PersonelIzinleriController(IPersonelIzinService personelIzinService)
+        public PersonelRaporlariController(IPersonelRaporService personelRaporService)
         {
-            _personelIzinService = personelIzinService;
+            _personelRaporService = personelRaporService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _personelIzinService.GetAll();
+            var result = _personelRaporService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,9 +32,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(PersonelIzin personelIzin)
+        public IActionResult Add(PersonelRapor personelRapor)
         {
-            var result = _personelIzinService.Add(personelIzin);
+            var result = _personelRaporService.Add(personelRapor);
             if (result.Success)
             {
                 return Ok(result);
@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(PersonelIzin personelIzin)
+        public IActionResult Update(PersonelRapor personelRapor)
         {
-            var result = _personelIzinService.Update(personelIzin);
+            var result = _personelRaporService.Update(personelRapor);
             if (result.Success)
             {
                 return Ok(result);
@@ -56,18 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getpersoneller")]
         public IActionResult GetPersoneller()
         {
-            var result = _personelIzinService.GetPersonelller();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _personelIzinService.Get(id);
+            var result = _personelRaporService.GetPersonelller();
             if (result.Success)
             {
                 return Ok(result);
@@ -75,5 +64,15 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
+        {
+            var result = _personelRaporService.Get(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
