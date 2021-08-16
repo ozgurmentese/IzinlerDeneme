@@ -7,6 +7,7 @@ namespace Entities.Dtos
 {
     public class PersonelIzinDto:IDto
     {
+        public int Id { get; set; }
         public int PersonelId { get; set; }
         public string AdSoyAd { get; set; }
         public int HakEdilenIzinGunSayisi { get; set; }

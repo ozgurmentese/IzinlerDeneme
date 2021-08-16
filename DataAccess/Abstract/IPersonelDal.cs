@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IPersonelDal:IEntityRepository<Personel>
     {
-        //List<PersonelDto> GetPersonel(Expression<Func<PersonelDto, bool>> filter = null);
+        List<PersonelRaporIzinDto> PersonelRaporIzinList(Expression<Func<PersonelRaporIzinDto, bool>> filter = null);
     }
 }

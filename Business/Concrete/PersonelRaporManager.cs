@@ -63,7 +63,7 @@ namespace Business.Concrete
 
         private IResult DegerKontrol(int deger)
         {
-            if (deger < 0)
+            if (deger <= 0)
             {
                 return new ErrorResult("Girilen tarih hatası");
             }

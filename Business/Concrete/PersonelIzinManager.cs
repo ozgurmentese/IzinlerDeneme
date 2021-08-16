@@ -88,28 +88,6 @@ namespace Business.Concrete
                 return result;
             }
 
-            //if (personelizin.KalanIzinGunSayisi <= 0)
-            //{
-            //    return new ErrorResult("Personelin izin hakkı yoktur");
-            //}
-
-            //if (personelIzinGunSayisi <= 0)
-            //{
-            //    return new ErrorResult("Girilen tarih yanlıştır!");
-            //}
-
-            //if (personelizin.KalanIzinGunSayisi < personelIzinGunSayisi)
-            //{
-            //    return new ErrorResult("Geçersiz Tarih");
-            //}
-
-            //if (personelizin.KalanIzinGunSayisi <= 0)
-            //{
-            //    return new ErrorResult("İzin kalmadı");
-            //}
-
-
-
             var person = new PersonelIzin
             {
                 PersonelId = personelIzin.PersonelId,
@@ -136,7 +114,7 @@ namespace Business.Concrete
 
         private IResult DegerKontrol(int deger)
         {
-            if (deger < 0)
+            if (deger <= 0)
             {
                 return new ErrorResult("Girilen tarih hatası");
             }

@@ -22,7 +22,8 @@ namespace DataAccess.Concrete.EntityFramework
                              on personeller.Id equals personelIzinleri.PersonelId
                              select new PersonelIzinDto
                              {
-                                 PersonelId = personelIzinleri.Id,
+                                 Id=personelIzinleri.Id,
+                                 PersonelId = personeller.Id,
                                  AdSoyAd = personeller.Ad + " " + personeller.SoyAd,
                                  HakEdilenIzinGunSayisi = personelIzinleri.HakEdilenIzinGunSayisi,
                                  KalanIzinGunSayisi=personelIzinleri.KalanIzinGunSayisi,

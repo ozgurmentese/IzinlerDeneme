@@ -41,5 +41,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("personelraporizinlist")]
+        public IActionResult PersonelRaporIzinList()
+        {
+            var result = _personelService.PersonelRaporIzinList();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        
     }
 }

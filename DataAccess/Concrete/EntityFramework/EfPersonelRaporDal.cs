@@ -21,7 +21,8 @@ namespace DataAccess.Concrete.EntityFramework
                              on personeller.Id equals personelRaporlari.PersonelId
                              select new PersonelRaporDto
                              {
-                                 PersonelId = personelRaporlari.Id,
+                                 Id = personelRaporlari.Id,
+                                 PersonelId = personelRaporlari.PersonelId,
                                  AdSoyAd = personeller.Ad + " " + personeller.SoyAd,
                                  HakEdilenRaporGunSayisi = personelRaporlari.HakEdilenRaporGunSayisi,
                                  KalanRaporGunSayisi = personelRaporlari.KalanRaporGunSayisi,
@@ -32,8 +33,5 @@ namespace DataAccess.Concrete.EntityFramework
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
-
-
-
     }
 }

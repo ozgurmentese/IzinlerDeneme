@@ -2,6 +2,7 @@
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,55 +11,29 @@ namespace Business.Concrete
 {
     public class PersonelManager : IPersonelService
     {
-        IPersonelDal _personelDal;
-        IPersonelIzinService _personelIzinService;
-        IPersonelRaporService _personelRaporService;
+        private readonly IPersonelDal _personelDal;
+        private readonly IPersonelIzinService _personelIzinService;
+        private readonly IPersonelRaporService _personelRaporService;
 
-        public PersonelManager(IPersonelDal personelDal,IPersonelIzinService personelIzinService,IPersonelRaporService personelRaporService)
+        public PersonelManager(IPersonelDal personelDal, IPersonelIzinService personelIzinService, IPersonelRaporService personelRaporService)
         {
             _personelDal = personelDal;
             _personelIzinService = personelIzinService;
             _personelRaporService = personelRaporService;
         }
 
-        //public IResult Add(Personel personel)
-        //{
-        //    _personelDal.Add(personel);
-        //    PersonelIzin personelIzin = new PersonelIzin
-        //    {
-        //        PersonelId = personel.Id,
-        //        HakEdilenIzinGunSayisi = Hesapla(DateTime.Now.Year - personel.GirisTarihi.Year)
-        //    };
-
-        //    _personelIzinDal.Add(personelIzin);
-        //    return new SuccessResult("Eklendi");
-        //}
-        
         public IResult Add(Personel personel)
         {
-            _personelDal.Add(personel);
-            _personelIzinService.NewPersonelIzinAdd(personel);
-            _personelRaporService.NewPersonelRaporAdd(personel);
 
-            return new SuccessResult("Eklendi");
+            var personelIzin = _personelIzinService.NewPersonelIzinAdd(personel);
+            var personelRapor = _personelRaporService.NewPersonelRaporAdd(personel);
+            if (personelIzin.Success && personelRapor.Success)
+            {
+                _personelDal.Add(personel);
+                return new SuccessResult("Eklendi");
+            }
+            return new ErrorResult("Hata Oluştu");
         }
-
-        //private int Hesapla(int izinGunSayisi)
-        //{
-        //    if (izinGunSayisi >= 1 && izinGunSayisi <= 5)
-        //    {
-        //        return 14;
-        //    }
-        //    else if (izinGunSayisi > 5 && izinGunSayisi < 15)
-        //    {
-        //        return 20;
-        //    }
-        //    else if (izinGunSayisi >= 15)
-        //    {
-        //        return 26;
-        //    }
-        //    return 0;
-        //}
 
         public IDataResult<Personel> Get(int id)
         {
@@ -68,6 +43,11 @@ namespace Business.Concrete
         public IDataResult<List<Personel>> GetAll()
         {
             return new SuccessDataResult<List<Personel>>(_personelDal.GetAll(), "Listelendi");
+        }
+
+        public IDataResult<List<PersonelRaporIzinDto>> PersonelRaporIzinList()
+        {
+            return new SuccessDataResult<List<PersonelRaporIzinDto>>(_personelDal.PersonelRaporIzinList(), "Listelendi");
         }
     }
 }
